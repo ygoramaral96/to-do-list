@@ -33,3 +33,4 @@ D:\GitHub\to-do-list\TodoAPI\obj\Debug\net5.0\TodoApi.dll
 D:\GitHub\to-do-list\TodoAPI\obj\Debug\net5.0\ref\TodoApi.dll
 D:\GitHub\to-do-list\TodoAPI\obj\Debug\net5.0\TodoApi.pdb
 D:\GitHub\to-do-list\TodoAPI\obj\Debug\net5.0\TodoApi.genruntimeconfig.cache
+D:\GitHub\to-do-list\TodoAPI\bin\Debug\net5.0\Npgsql.dll
