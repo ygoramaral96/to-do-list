@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TodoApi.Domain
+namespace TodoApi.Models
 {
-    public class Todo
+    public class TodoItem
     {
         public long Id { get; set; }
         public DateTime CreatedAt { get; set; }
