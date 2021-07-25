@@ -6,8 +6,13 @@ using TodoApi.Models;
 
 namespace TodoApi.Repositories
 {
-    interface ITodoRepository
+    public interface ITodoRepository
     {
         Task<List<TodoItem>> GetTodoItemsAsync();
+        Task<TodoItem> GetByIdAsync(int id);
+        Task<TodoItem> GeCountAsync();
+        Task<TodoItem> CreateAsync(TodoItem newTodoItem);
+        Task<TodoItem> UpdateAsync(TodoItem todoItem);
+        Task<TodoItem> DeleteByIdAsync(int id);
     }
 }

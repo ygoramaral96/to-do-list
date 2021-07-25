@@ -23,5 +23,30 @@ namespace TodoApi.Repositories
                 return todoItems;
             }
         }
+
+        Task<TodoItem> ITodoRepository.CreateAsync(TodoItem newTodoItem)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<TodoItem> ITodoRepository.DeleteByIdAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<TodoItem> ITodoRepository.GeCountAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<TodoItem> ITodoRepository.GetByIdAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<TodoItem> ITodoRepository.UpdateAsync(TodoItem todoItem)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

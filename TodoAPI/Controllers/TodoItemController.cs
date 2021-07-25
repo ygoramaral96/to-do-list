@@ -16,13 +16,50 @@ namespace TodoApi.Controllers
             _todoRepository = todoRepository;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> create()
+        {
+            var result = await _todoRepository.CreateAsync(new TodoItem { });
+            return Ok(result);
+        }
+
         [HttpGet]
-        [Route("todos")]
-        public async Task<IActionResult> GetTodoAsync()
+        [Route("count")]
+        public async Task<IActionResult> count()
+        {
+            var result = await _todoRepository.GeCountAsync();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> list()
         {
             var result = await _todoRepository.GetTodoItemsAsync();
             return Ok(result);
         }
 
+        [HttpPost]
+        [Route("{id}")]
+        public async Task<IActionResult> findById(int id)
+        {
+            var result = await _todoRepository.GetByIdAsync(id);
+            return Ok(result);
+        }
+
+        [HttpPatch]
+        [Route("{id}")]
+        public async Task<IActionResult> update(TodoItem todoItem)
+        {
+            var result = await _todoRepository.UpdateAsync(todoItem);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> deleteById(int id)
+        {
+            var result = await _todoRepository.DeleteByIdAsync(id);
+            return Ok(result);
+        }
     }
 }
