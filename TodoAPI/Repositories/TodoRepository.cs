@@ -24,29 +24,61 @@ namespace TodoApi.Repositories
             }
         }
 
-        Task<TodoItem> ITodoRepository.CreateAsync(TodoItem newTodoItem)
+        public async Task<TodoItem> CreateAsync(TodoItem newTodoItem)
         {
-            throw new System.NotImplementedException();
+            using (var conn = _db.Connection)
+            {
+                string query = @"
+                    INSERT INTO TodoItems(Title, Completed, Order) 
+                    OUTPUT INSERTED.*
+                    VALUES (@Title, @Completed, @Order)";
+
+                var todoItem = await conn.QuerySingleAsync<TodoItem>(sql: query, param: newTodoItem);
+                return todoItem;
+            }
         }
 
-        Task<TodoItem> ITodoRepository.DeleteByIdAsync(int id)
+        public async Task<int> DeleteByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            using (var conn = _db.Connection)
+            {
+                string query = "DELETE FROM TodoItems WHERE Id = @id";
+                var result = await conn.ExecuteAsync(sql: query, param: new { id });
+                return result;
+            }
         }
 
-        Task<TodoItem> ITodoRepository.GeCountAsync()
+        public async Task<int> GeCountAsync()
         {
-            throw new System.NotImplementedException();
+            using (var conn = _db.Connection)
+            {
+                string query = "SELECT COUNT(*) FROM TodoItems";
+                int qtyTodoItems = await conn.ExecuteScalarAsync<int>(sql: query);
+                return qtyTodoItems;
+            }
         }
 
-        Task<TodoItem> ITodoRepository.GetByIdAsync(int id)
+        public async Task<TodoItem> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            using (var conn = _db.Connection)
+            {
+                string query = "SELECT * FROM TodoItems WHERE Id = @id";
+                TodoItem todoItem = await conn.QueryFirstOrDefaultAsync<TodoItem>
+                    (sql: query, param: new { id });
+                return todoItem;
+            }
         }
 
-        Task<TodoItem> ITodoRepository.UpdateAsync(TodoItem todoItem)
+        public async Task<int> UpdateAsync(TodoItem todoItem)
         {
-            throw new System.NotImplementedException();
+            using (var conn = _db.Connection)
+            {
+                string query = @"UPDATE TodoItems 
+                    SET (Title = @Title, Completed = @Completed, Order = @Order)  
+                    WHERE Id = @id";
+                var result = await conn.ExecuteAsync(sql: query, param: todoItem);
+                return result;
+            }
         }
     }
 }

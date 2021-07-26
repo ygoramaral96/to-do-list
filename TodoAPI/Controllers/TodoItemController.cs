@@ -17,9 +17,9 @@ namespace TodoApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> create()
+        public async Task<IActionResult> create(TodoItem newTodoItem)
         {
-            var result = await _todoRepository.CreateAsync(new TodoItem { });
+            var result = await _todoRepository.CreateAsync(newTodoItem);
             return Ok(result);
         }
 
