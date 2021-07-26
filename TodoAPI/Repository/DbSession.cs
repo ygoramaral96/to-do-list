@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using Npgsql;
 
-namespace TodoApi.Models
+namespace TodoApi.Repository
 {
     public class DbSession : IDisposable
     {

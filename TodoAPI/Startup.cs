@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TodoApi.Models;
-using TodoApi.Repositories;
 using Microsoft.EntityFrameworkCore;
+using TodoApi.Repository;
 
 namespace TodoApi
 {
@@ -28,9 +28,6 @@ namespace TodoApi
             });
 
             var connectionString = Configuration["ConnectionStrings:TodoApp"];
-            services.AddDbContext<TodoItemContext>(options =>
-                options.UseNpgsql(connectionString)
-            );
 
             services.AddControllers();
 
@@ -40,7 +37,7 @@ namespace TodoApi
             });
 
             services.AddScoped<DbSession>();
-            services.AddTransient<ITodoRepository, TodoRepository>();
+            services.AddTransient<IRepositoryBase<BaseEntity>, RepositoryBase<BaseEntity>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
